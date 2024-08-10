@@ -84,6 +84,10 @@
 
                     <th>Edit</th>
 
+                    <th>Status Accept</th>
+
+                    <th>Status Reject</th>
+
 
                 </tr>
 
@@ -114,6 +118,15 @@
 
                         <td>
                             <a href="{{ url('edit_page', $post->id) }}" class="btn btn-success">Edit</a>
+
+                        </td>
+
+                        <td>
+                            <a onclick="return confirm('Are you sure to reject this post?') href="{{url('accept_post', $post->id)}}" class="btn btn-outline-secondary">Accept</a>
+                        </td>
+
+                        <td>
+                            <a onclick="return confirm('Are you sure to reject this post?')" href="{{url('reject_post', $post->id)}}" class="btn btn-primary">Reject</a>
 
                         </td>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -18,7 +19,7 @@ class HomeController extends Controller
     {
         if (Auth::id()) {
 
-            $post = Post::where('opst_status', '=', 'active')->get();
+            $post = Post::where('status', '=', 'active')->get();
             $usertype = Auth()->user()->usertype;
 
             if ($usertype == 'user') {
@@ -31,10 +32,11 @@ class HomeController extends Controller
         }
     }
 
+
     public function homepage()
     {
 
-        $post = Post::where('opst_status', '=', 'active')->get();
+        $post = Post::where('status', '=', 'active')->get();
 
         return view('home.homepage', compact('post'));
     }
@@ -49,7 +51,10 @@ class HomeController extends Controller
 
     public function create_post()
     {
-        return view('home.create_post');
+
+        $categories = Category::all();
+
+        return view('home.create_post')->with('categories', $categories);
     }
 
 
@@ -78,7 +83,7 @@ class HomeController extends Controller
 
         $post->usertype = $usertype;
 
-        $post->opst_status = ('pending');
+        $post->status = ('inactive');
 
 
 

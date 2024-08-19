@@ -18,8 +18,9 @@ return new class extends Migration
 
             $table->string('image')->nullable();
             $table->string('name')->nullable();
-            $table->string('user_id')->nullable();
-            $table->string('opst_status')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->string('usertype')->nullable();
 
 

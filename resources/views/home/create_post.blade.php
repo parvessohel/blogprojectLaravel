@@ -48,7 +48,7 @@
 
             <h3 class="title_deg">Add Post</h3>
 
-            <form action="{{url('user_post')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('user_post') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="field_deg">
                     <label>Title</label>
@@ -59,6 +59,19 @@
                     <label>Description</label>
                     <textarea name="description"></textarea>
                 </div>
+
+                {{-- <div class="div_center">
+                    <label>Category</label>
+                    <select name="category_id">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div> --}}
+                
 
 
                 <div class="field_deg">

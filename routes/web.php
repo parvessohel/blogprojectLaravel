@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -33,7 +34,6 @@ require __DIR__ . '/auth.php';
 
 Route::get('/post_page', [AdminController::class, 'post_page']);
 
-
 Route::post('/add_post', [AdminController::class, 'add_post']);
 
 
@@ -64,6 +64,11 @@ Route::get('/post_update_page/{id}', [HomeController::class, 'post_update_page']
 
 
 Route::post('/update_post_data/{id}', [HomeController::class, 'update_post_data'])->middleware('auth');
+
+
+// for category resource
+Route::resource('categories', CategoryController::class)->middleware('auth');
+
 
 
 Route::get('/accept_post/{id}', [AdminController::class, 'accept_post']);

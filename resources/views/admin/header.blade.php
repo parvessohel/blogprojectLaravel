@@ -14,8 +14,8 @@
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <div class="navbar-header">
                 <!-- Navbar Header--><a href="index.html" class="navbar-brand">
-                    <div class="brand-text brand-big visible text-uppercase"><strong
-                            class="text-primary">Dark</strong><strong>Admin</strong></div>
+                    <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Hizibizi
+                        </strong><strong>Blog</strong></div>
                     <div class="brand-text brand-sm"><strong class="text-primary">D</strong><strong>A</strong></div>
                 </a>
                 <!-- Sidebar Toggle Btn-->
@@ -105,7 +105,7 @@
                 </div>
                 <!-- Tasks end-->
                 <!-- Megamenu-->
-                <div class="list-inline-item dropdown menu-large"><a href="#" data-toggle="dropdown"
+                {{-- <div class="list-inline-item dropdown menu-large"><a href="#" data-toggle="dropdown"
                         class="nav-link">Mega <i class="fa fa-ellipsis-v"></i></a>
                     <div class="dropdown-menu megamenu">
                         <div class="row">
@@ -179,10 +179,10 @@
                                         class="fa fa-clock-o"></i><strong>Demo 6</strong></a></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Megamenu end     -->
                 <!-- Languages dropdown    -->
-                
+
                 <!-- Log out               -->
                 <div class="list-inline-item logout">
                     <x-app-layout>

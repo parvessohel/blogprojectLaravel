@@ -77,6 +77,7 @@
                     <th>Post Status</th>
 
                     <th>User Type</th>
+                    <th>Category</th>
 
                     <th>Post Image</th>
 
@@ -100,9 +101,10 @@
 
                         <td>{{ $post->name }}</td>
 
-                        <td>{{ $post->opst_status }}</td>
+                        <td>{{ $post->status }}</td>
 
                         <td>{{ $post->usertype }}</td>
+                        <td>{{ $post->category?->name }}</td>
 
                         <td>
 
@@ -122,11 +124,26 @@
                         </td>
 
                         <td>
-                            <a onclick="return confirm('Are you sure to reject this post?') href="{{url('accept_post', $post->id)}}" class="btn btn-outline-secondary">Accept</a>
+                            @if ($post->status == 'active')
+                                <a class="btn btn-success text-white"> Accepted</a>
+                            @else
+                                <a onclick="return confirm('Are you sure to accept this post?')"
+                                    href="{{ url('accept_post', $post->id) }}" class="btn btn-outline-secondary">
+                                    Accept</a>
+                            @endif
+
+
                         </td>
 
                         <td>
-                            <a onclick="return confirm('Are you sure to reject this post?')" href="{{url('reject_post', $post->id)}}" class="btn btn-primary">Reject</a>
+
+                            @if ($post->status == 'inactive')
+                                <a class="btn btn-danger text-white">Rejected</a>
+                            @else
+                                <a onclick="return confirm('Are you sure to reject this post?')"
+                                    href="{{ url('reject_post', $post->id) }}" class="btn btn-primary">Reject</a>
+                            @endif
+
 
                         </td>
 

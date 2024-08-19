@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
@@ -12,13 +13,22 @@ class AdminController extends Controller
 {
    public function post_page()
    {
-      return view('admin.post_page');
+      $categories = Category::all();
+      return view('admin.post_page')->with('categories', $categories);
    }
 
 
    public function add_post(Request $request)
 
    {
+      $request->validate([
+         'title' => 'required|max:255',
+      ]);
+
+      //   if ($validated) {
+      //       return redirect()->back()->with('message', 'Post title already exists');
+      //   }
+
 
       $user = Auth()->user();
 
@@ -32,10 +42,11 @@ class AdminController extends Controller
       $post->title = $request->title;
       $post->description = $request->description;
 
-      $post->opst_status = 'active';
+      $post->status = 'active';
       $post->user_id = $userid;
 
       $post->name = $name;
+      $post->category_id = $request->category_id;
 
       $post->usertype = $usertype;
 
@@ -75,18 +86,21 @@ class AdminController extends Controller
 
    {
       $post = Post::find($id);
-      return view('admin.edit_page', compact('post'));
+      $categories = Category::all();
+      return view('admin.edit_page', compact('post', 'categories'));
    }
 
 
    public function update_post(Request $request, $id)
    {
+      // $validated = $request->validate([
+      //    'title' => 'required|max:255',
+      // ]);
+
       $data = Post::find($id);
-
       $data->title = $request->title;
-
       $data->description = $request->description;
-
+      $data->category_id = $request->category_id;
       $image = $request->image;
 
       if ($image) {
@@ -109,8 +123,7 @@ class AdminController extends Controller
    {
 
       $data = Post::find($id);
-
-      $data->opst_status = 'active';
+      $data->status = 'active';
 
       $data->save();
 
@@ -124,7 +137,7 @@ class AdminController extends Controller
 
       $data = Post::find($id);
 
-      $data->opst_status = 'rejected';
+      $data->status = 'inactive';
 
       $data->save();
 

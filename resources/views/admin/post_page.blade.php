@@ -42,8 +42,18 @@
 
                     <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">x</button>
 
-                    {{session()->get('message')}}
+                    {{ session()->get('message') }}
 
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 
@@ -66,7 +76,20 @@
                     <div class="div_center">
 
                         <label>Post Description</label>
-                        <textarea name="description"></textarea>
+                        <textarea name="description">{{ old('description') }}</textarea>
+
+
+                    </div>
+
+                    <div class="div_center">
+
+                        <label>Category</label>
+                        <select name="category_id">
+                            <option value="">Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
 
 
                     </div>

@@ -64,12 +64,27 @@
                 </div>
 
                 <div class="div_center">
-
                     <label>Post Description</label>
                     <textarea name="description">{{ $post->description }}</textarea>
 
 
                 </div>
+
+                <div class="div_center">
+
+                    <label>Category</label>
+                    <select name="category_id">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                    </select>
+
+
+                </div>
+                
                 <div>
 
                     <label>Old Image</label>
